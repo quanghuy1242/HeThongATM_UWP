@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="HeThongATM_UWP.HomePageNav"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HeThongATM_UWP.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView x:Name="nvTopNav" 
+                        IsTabStop="False" 
+                        Loaded="nvTopNav_Loaded"
+                        SelectionChanged="nvTopNav_SelectionChanged"
+                        ItemInvoked="nvTopNav_ItemInvoked"
+                        x:FieldModifier="public">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home" Tag="Home" x:Name="IHome">
+                    <TextBlock Tag="nav_Home">Home</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Directions" Tag="SendMoney">
+                    <TextBlock Tag="nav_SendMoney">Gửi tiền</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Orientation" Tag="RutMoney">
+                    <TextBlock Tag="nav_RutMoney">Rút tiền</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="ImportAll" Tag="NapMoney">
+                    <TextBlock Tag="nav_NapMoney">Nạp tiền</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Edit" Tag="UpdateInfo">
+                    <TextBlock Tag="nav_UpdateInfo">Cập nhật thông tin</TextBlock>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Library" Tag="History">
+                    <TextBlock Tag="nav_History">Lịch sử giao dịch</TextBlock>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <NavigationView.PaneFooter>
+                <NavigationViewItem Icon="Contact">
+                    <TextBlock Text="{Binding Path=hoVaTen}"/>
+                </NavigationViewItem>
+            </NavigationView.PaneFooter>
+            <Frame x:Name="contentFrame" x:FieldModifier="public"></Frame>
+        </NavigationView>
+    </Grid>
+</Page>
