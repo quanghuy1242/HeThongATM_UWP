@@ -40,17 +40,31 @@ namespace HeThongATM_UWP
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (dnC.checkDangNhap((App.Current as App).ConnectionString, txtMaSo.Text, txtPass.Password.ToString())) {
-                this.Frame.Navigate(typeof(HomePageNav));
-                ContentDialog dialog = new ContentDialog()
+            try
+            {
+                if (dnC.checkDangNhap((App.Current as App).ConnectionString, txtMaSo.Text, txtPass.Password.ToString()))
                 {
-                    Title = "Thành công",
-                    Content = "Xin chào! " + TaiKhoanDangNhap.hoVaTen, 
-                    CloseButtonText = "Ok"
-                };
-                await dialog.ShowAsync();
+                    this.Frame.Navigate(typeof(HomePageNav));
+                    ContentDialog dialog = new ContentDialog()
+                    {
+                        Title = "Thành công",
+                        Content = "Xin chào! " + TaiKhoanDangNhap.hoVaTen,
+                        CloseButtonText = "Ok"
+                    };
+                    await dialog.ShowAsync();
+                }
+                else
+                {
+                    ContentDialog dialog = new ContentDialog()
+                    {
+                        Title = "Error",
+                        Content = "Đã xảy ra lỗi",
+                        CloseButtonText = "Ok"
+                    };
+                    await dialog.ShowAsync();
+                }
             }
-            else
+            catch
             {
                 ContentDialog dialog = new ContentDialog()
                 {

@@ -34,9 +34,9 @@
                     <Setter Property="Margin" Value="0,10,0,0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <TextBox Header="Số tiền hiện tại:" IsReadOnly="True"></TextBox>
-            <TextBox Header="Số tiền nạp:"></TextBox>
-            <Button>Nạp tiền</Button>
+            <TextBox Header="Số tiền hiện tại:" IsReadOnly="True" x:Name="txtTienDu" Loaded="txtTienDu_Loaded"></TextBox>
+            <TextBox Header="Số tiền nạp:" x:Name="txtTienNap"></TextBox>
+            <Button x:Name="btnNapTien" Click="btnNapTien_Click">Nạp tiền</Button>
         </StackPanel>
     </Grid>
 </Page>

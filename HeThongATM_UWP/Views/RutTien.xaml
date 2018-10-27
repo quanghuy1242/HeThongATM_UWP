@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,9 +35,9 @@
                     <Setter Property="Margin" Value="0,10,0,0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <TextBox Header="Số tiền hiện tại:" IsReadOnly="True"></TextBox>
-            <TextBox Header="Số tiền rút:"></TextBox>
-            <Button>Rút tiền</Button>
+            <TextBox Header="Số tiền hiện tại:" IsReadOnly="True" x:Name="txtTienDu" Loaded="txtTienDu_Loaded"></TextBox>
+            <TextBox Header="Số tiền rút:" x:Name="txtTienRut"></TextBox>
+            <Button x:Name="btnRutTien" Click="btnRutTien_Click">Rút tiền</Button>
         </StackPanel>
     </Grid>
 </Page>

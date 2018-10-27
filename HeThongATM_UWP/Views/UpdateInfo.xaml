@@ -34,10 +34,10 @@
                     <Setter Property="Margin" Value="0,10,0,0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <TextBox Header="Mật khẩu hiện tại:" IsReadOnly="True"></TextBox>
-            <TextBox Header="Mật khẩu mới:"></TextBox>
-            <TextBox Header="Nhập lại mật khẩu mới:"></TextBox>
-            <Button>Cập nhật</Button>
+            <TextBox Header="Mật khẩu hiện tại:" x:Name="txtoldPass"></TextBox>
+            <TextBox Header="Mật khẩu mới:" x:Name="txtnewPass"></TextBox>
+            <TextBox Header="Nhập lại mật khẩu mới:" x:Name="txtrePass"></TextBox>
+            <Button x:Name="btnUpdate" Click="btnUpdate_Click">Cập nhật</Button>
         </StackPanel>
     </Grid>
 </Page>

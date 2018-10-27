@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using HeThongATM_UWP.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -22,9 +23,12 @@ namespace HeThongATM_UWP.Views
     /// </summary>
     public sealed partial class HistoryView : Page
     {
+        LichSuController lsC = new LichSuController();
+
         public HistoryView()
         {
             this.InitializeComponent();
+            gvHistoryView.ItemsSource = lsC.GetListLS((App.Current as App).ConnectionString);
         }
     }
 }

@@ -35,10 +35,10 @@
                     <Setter Property="Margin" Value="0,10,0,0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <TextBox Header="Số tiền hiện tại:" IsReadOnly="True"></TextBox>
-            <TextBox Header="Số tài khoản nhân tiền:"></TextBox>
-            <TextBox Header="Số tiền chuyển:"></TextBox>
-            <Button>Gửi tiền</Button>
+            <TextBox Header="Số tiền hiện tại:" IsReadOnly="True" x:Name="txtTienDu" Loaded="txtTienDu_Loaded"></TextBox>
+            <TextBox Header="Số tài khoản nhân tiền:" x:Name="txtTKNhan"></TextBox>
+            <TextBox Header="Số tiền chuyển:" x:Name="txtTienGui"></TextBox>
+            <Button x:Name="btnGuiTien" Click="btnGuiTien_Click">Gửi tiền</Button>
         </StackPanel>
     </Grid>
 

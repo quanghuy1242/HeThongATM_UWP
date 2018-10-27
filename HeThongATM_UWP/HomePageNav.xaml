@@ -14,7 +14,8 @@
                         Loaded="nvTopNav_Loaded"
                         SelectionChanged="nvTopNav_SelectionChanged"
                         ItemInvoked="nvTopNav_ItemInvoked"
-                        x:FieldModifier="public">
+                        x:FieldModifier="public"
+                        IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Tag="Home" x:Name="IHome">
                     <TextBlock Tag="nav_Home">Home</TextBlock>

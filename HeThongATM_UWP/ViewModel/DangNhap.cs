@@ -40,9 +40,9 @@ namespace HeThongATM_UWP.ViewModel
                                         TaiKhoanDangNhap.hoVaTen = hoten;
                                         TaiKhoanDangNhap.maPIN = passworddt;
                                         TaiKhoanDangNhap.soThe = sothedt;
+                                        TaiKhoanDangNhap.soTaiKhoan = soTaiKhoan;
                                         return true;
                                     }
-                                    break;
                                 }
                             }
                         }

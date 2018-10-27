@@ -102,9 +102,13 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DangNhapModel.cs" />
+    <Compile Include="Models\LichSuModel.cs" />
     <Compile Include="Models\TaiKhoanDangNhap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DangNhap.cs" />
+    <Compile Include="ViewModel\GiaoDichController.cs" />
+    <Compile Include="ViewModel\LichSuController.cs" />
+    <Compile Include="ViewModel\UpdateInfoController.cs" />
     <Compile Include="Views\GuiTien.xaml.cs">
       <DependentUpon>GuiTien.xaml</DependentUpon>
     </Compile>
