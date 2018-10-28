@@ -12,7 +12,7 @@ namespace HeThongATM_UWP.ViewModel
 {
     class DangNhap
     {
-        public bool checkDangNhap(string connectionString, string mathe, string pass)
+        public Task<bool> checkDangNhap(string connectionString, string mathe, string pass)
         {
             const string query = "exec sp_GetAllUser";
             DataSet ds = new DataSet();
@@ -41,7 +41,7 @@ namespace HeThongATM_UWP.ViewModel
                                         TaiKhoanDangNhap.maPIN = passworddt;
                                         TaiKhoanDangNhap.soThe = sothedt;
                                         TaiKhoanDangNhap.soTaiKhoan = soTaiKhoan;
-                                        return true;
+                                        return Task.FromResult(true);
                                     }
                                 }
                             }
@@ -54,7 +54,7 @@ namespace HeThongATM_UWP.ViewModel
             {
                 Debug.Write(e.Message);
             }
-            return false;
+            return Task.FromResult(false);
         }
     }
 }

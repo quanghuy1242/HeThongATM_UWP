@@ -20,6 +20,8 @@ using System.Diagnostics;
 using System.Data;
 using Windows.UI.Popups;
 using HeThongATM_UWP.ViewModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -40,39 +42,76 @@ namespace HeThongATM_UWP
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            pgrLoading.Opacity = 1;
             try
             {
-                if (dnC.checkDangNhap((App.Current as App).ConnectionString, txtMaSo.Text, txtPass.Password.ToString()))
-                {
-                    this.Frame.Navigate(typeof(HomePageNav));
-                    ContentDialog dialog = new ContentDialog()
-                    {
-                        Title = "Thành công",
-                        Content = "Xin chào! " + TaiKhoanDangNhap.hoVaTen,
-                        CloseButtonText = "Ok"
-                    };
-                    await dialog.ShowAsync();
-                }
-                else
-                {
-                    ContentDialog dialog = new ContentDialog()
-                    {
-                        Title = "Error",
-                        Content = "Đã xảy ra lỗi",
-                        CloseButtonText = "Ok"
-                    };
-                    await dialog.ShowAsync();
-                }
+                // Cho thanh loading chạy
+                pgrLoading.IsIndeterminate = true;
+
+                // Cho tiến trình login chạy trên Task khác với async await
+                await Task.Run(() => LoginProcess());
             }
-            catch
+            catch(Exception ex)
             {
-                ContentDialog dialog = new ContentDialog()
-                {
-                    Title = "Error",
-                    Content = "Đã xảy ra lỗi",
-                    CloseButtonText = "Ok"
-                };
-                await dialog.ShowAsync();
+                pgrLoading.ShowError = true;
+                Debug.Write(ex.Message);
+            }
+        }
+
+        private async void LoginProcess()
+        {
+            try
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () => {
+                    if (await dnC.checkDangNhap((App.Current as App).ConnectionString, txtMaSo.Text, txtPass.Password.ToString()))
+                    {
+                        this.Frame.Navigate(typeof(HomePageNav));
+
+                        // Khi chạy trên tiến trình khác, để dùng các các hàm async await khác phải dùng thứ này
+                        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                        {
+                            ContentDialog dialog = new ContentDialog()
+                            {
+                                Title = "Thành công",
+                                Content = "Xin chào! " + TaiKhoanDangNhap.hoVaTen,
+                                CloseButtonText = "Ok"
+                            };
+                            await dialog.ShowAsync();
+                        });
+                    }
+                    else
+                    {
+                        await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                        {
+                            ContentDialog dialog = new ContentDialog()
+                            {
+                                Title = "Error",
+                                Content = "Đã xảy ra lỗi",
+                                CloseButtonText = "Ok"
+                            };
+                            pgrLoading.ShowError = true;
+                            await dialog.ShowAsync();
+                        });
+
+                    }
+                });
+                
+            }
+            catch(Exception ee)
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+                 {
+                     ContentDialog dialog = new ContentDialog()
+                     {
+                         Title = "Error",
+                         Content = "Đã xảy ra lỗi",
+                         CloseButtonText = "Ok"
+                     };
+                     pgrLoading.ShowError = true;
+                     await dialog.ShowAsync();
+                 });
+                Debug.Write(ee.Message);
+
             }
         }
     }
